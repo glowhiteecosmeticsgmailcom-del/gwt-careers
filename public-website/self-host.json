@@ -1,0 +1,6 @@
+{
+  "role": "public",
+  "workerName": "gwt-public",
+  "databaseName": "gwt-jobs-db",
+  "databaseId": "REPLACE_WITH_YOUR_D1_DATABASE_UUID"
+}

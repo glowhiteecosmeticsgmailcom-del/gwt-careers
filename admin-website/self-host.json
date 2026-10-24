@@ -1,0 +1,7 @@
+{
+  "role": "admin",
+  "workerName": "gwt-admin",
+  "databaseName": "gwt-admin-db",
+  "databaseId": "REPLACE_WITH_YOUR_D1_DATABASE_UUID",
+  "publicSiteUrl": "https://YOUR-PUBLIC-WORKER.YOUR-SUBDOMAIN.workers.dev"
+}

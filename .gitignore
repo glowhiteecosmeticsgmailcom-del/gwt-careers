@@ -1,0 +1,12 @@
+**/node_modules/
+**/dist/
+**/.wrangler/
+**/.sites-runtime/
+**/.env*
+**/.dev.vars*
+**/*.pem
+**/*.tsbuildinfo
+**/.next/
+**/.vinext/
+migration-data/
+.DS_Store

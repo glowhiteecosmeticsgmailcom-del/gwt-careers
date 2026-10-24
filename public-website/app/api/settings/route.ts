@@ -1,0 +1,5 @@
+import {env} from 'cloudflare:workers';
+import {guard,noCache} from '../../../lib/auth';
+import {email,phone} from '../../../lib/validation';
+export async function GET(){try{const row:any=await env.DB!.prepare("SELECT data FROM settings WHERE id='contact'").first();return Response.json(row?JSON.parse(row.data):{email:'',whatsapp:''},{headers:noCache});}catch{return Response.json({error:'Unable to load contacts.'},{status:503});}}
+export async function POST(req:Request){const e=guard(req);if(e)return e;try{const v=await req.json();const data={email:email(v.email),whatsapp:phone(v.whatsapp)};if(!data.email){const published=await env.DB!.prepare("SELECT data FROM jobs WHERE status='published'").all();if(published.results.some((r:any)=>!JSON.parse(r.data).email))throw Error('Published jobs use this email. Add individual job emails or close those jobs first.');}await env.DB!.prepare("INSERT INTO settings(id,data) VALUES('contact',?) ON CONFLICT(id) DO UPDATE SET data=excluded.data").bind(JSON.stringify(data)).run();return Response.json(data,{headers:noCache});}catch(e:any){return Response.json({error:e.message||'Unable to save settings.'},{status:400});}}

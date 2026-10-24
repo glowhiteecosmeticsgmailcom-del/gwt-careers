@@ -1,0 +1,8 @@
+{
+  "exported": "2026-10-24",
+  "source_commits": {
+    "public": "3bab3a633e7aac35b252635da2a5483889c4c779",
+    "admin": "aa785d45cb9bffa924130a7d36141badb45f7ad4"
+  },
+  "export_additions": "Independent hosting config, npm scripts, documentation, migration snapshot. No runtime passwords or service secrets included."
+}

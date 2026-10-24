@@ -1,0 +1,10 @@
+import {readFile,writeFile} from 'node:fs/promises';
+const input=process.argv[2]||'self-host.json';
+const settings=JSON.parse(await readFile(input,'utf8'));
+if(!/^[a-z][a-z0-9-]{1,62}$/.test(settings.workerName||''))throw Error('Set workerName in self-host.json.');
+if(!/^[a-f0-9-]{36}$/i.test(settings.databaseId||'')||settings.databaseId==='00000000-0000-4000-8000-000000000000')throw Error('Use your real D1 database UUID.');
+const base=JSON.parse(await readFile('dist/server/wrangler.json','utf8'));
+const config={name:settings.workerName,main:'index.js',compatibility_date:base.compatibility_date,compatibility_flags:base.compatibility_flags,workers_dev:true,no_bundle:true,rules:base.rules,assets:{directory:'../client'},d1_databases:[{binding:'DB',database_name:settings.databaseName,database_id:settings.databaseId,migrations_dir:'../../drizzle'}],vars:{},observability:{enabled:true}};
+if(settings.role==='admin'){const origin=new URL(settings.publicSiteUrl);if(origin.protocol!=='https:'||origin.pathname!=='/'||origin.search||origin.hash)throw Error('publicSiteUrl must be an HTTPS origin with no path.');config.vars.ADMIN_AUTH_MODE='password';config.vars.PUBLIC_SITE_URL=origin.origin;}else if(settings.role!=='public')throw Error('role must be public or admin.');
+await writeFile('dist/server/wrangler.selfhost.json',JSON.stringify(config,null,2));
+console.log('Created dist/server/wrangler.selfhost.json. Configure secrets privately; do not add them to this file.');
