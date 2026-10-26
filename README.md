@@ -7,3 +7,4 @@ Two apps: public-website for applicants; admin-website for managing jobs. Both r
 Includes the working connection fix and all 18 manufacturing job categories. The migration-data folder contains a dated business-data snapshot and is ignored by Git. No passwords or live secrets are included.
 
 Do not deploy the original generated Wrangler configuration: use build:selfhost and deploy:selfhost as documented.
+Cloudflare automatic deployment test - 26 October 2026.
