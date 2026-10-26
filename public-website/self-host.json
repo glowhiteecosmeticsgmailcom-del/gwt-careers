@@ -2,5 +2,5 @@
   "role": "public",
   "workerName": "gwt-public",
   "databaseName": "gwt-jobs-db",
-  "databaseId": "REPLACE_WITH_YOUR_D1_DATABASE_UUID"
+  "databaseId": "a7eb48a2-850b-4dcb-bd99-68cf7b1ab566"
 }

@@ -2,6 +2,6 @@
   "role": "admin",
   "workerName": "gwt-admin",
   "databaseName": "gwt-admin-db",
-  "databaseId": "REPLACE_WITH_YOUR_D1_DATABASE_UUID",
-  "publicSiteUrl": "https://YOUR-PUBLIC-WORKER.YOUR-SUBDOMAIN.workers.dev"
+  "databaseId": "b5a2a493-3fb9-4d65-b1ae-e1aa54309ef7",
+  "publicSiteUrl": "https://gwt-public.gwtcareers-ng2026.workers.dev"
 }
